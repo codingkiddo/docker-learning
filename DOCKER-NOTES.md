@@ -1,38 +1,34 @@
-
-As @LeVraiGG already states, the answer is here: https://github.com/golang/go/wiki/MacOS12BSDThreadRegisterIssue. The programme needs a newer go version, so the programme in question must be updated.
-
-For me the error occured with the programme docker-machine. What I had to do was upgrade docker-machine and link the new version:
-
-Upgrade docker-machine: brew install docker-machine
-Run brew install docker-machine again to see if it is linked. If not, continue
-Remove old link rm /usr/local/bin/docker-machine
-Link new version brew link docker-machine
-So I guess with the other failing programmes, the process could be similar
+# Docker overview
 
 
+![](assets/docker-logo.png)
+
+The concept of containerization itself is pretty old. But the emergence of the Docker Engine in 2013 has made it much easier to containerize your applications.
+
+According to the Stack Overflow Developer Survey - 2020, Docker is the #1 most wanted platform, #2 most loved platform, and also the #3 most popular platform.
+
+As in-demand as it may be, getting started can seem a bit intimidating at first. So in this book, we'll be learning everything from the basics to a more intermediate level of containerization. After going through the entire book, you should be able to:
+
+* Containerize (almost) any application
+* Upload custom Docker Images to online registries
+* Work with multiple containers using Docker Compose
+
+## Prerequisites
+* Familiarity with the Linux Terminal
+* Familiarity with JavaScript (some later projects use JavaScript)
 
 
-vinodkumar@Vinods-MacBook-Air atsea-sample-shop-app % docker-machine 
-fatal error: runtime: bsdthread_register error
 
-runtime stack:
-runtime.throw(0x20594e0, 0x21)
-	/usr/local/go/src/runtime/panic.go:619 +0x81 fp=0x7ff7bfeff198 sp=0x7ff7bfeff178 pc=0x1029751
-runtime.goenvs()
-	/usr/local/go/src/runtime/os_darwin.go:129 +0x83 fp=0x7ff7bfeff1c8 sp=0x7ff7bfeff198 pc=0x10272d3
-runtime.schedinit()
-	/usr/local/go/src/runtime/proc.go:496 +0xa4 fp=0x7ff7bfeff220 sp=0x7ff7bfeff1c8 pc=0x102c014
-runtime.rt0_go(0x7ff7bfeff258, 0x1, 0x7ff7bfeff258, 0x0, 0x1000000, 0x1, 0x7ff7bfeff400, 0x0, 0x7ff7bfeff40f, 0x7ff7bfeff42b, ...)
-	/usr/local/go/src/runtime/asm_amd64.s:252 +0x1f4 fp=0x7ff7bfeff228 sp=0x7ff7bfeff220 pc=0x1052c64
-vinodkumar@Vinods-MacBook-Air atsea-sample-shop-app % eval "$(docker-machine env -u)"
-fatal error: runtime: bsdthread_register error
+![](assets/docker-basic.png)
 
-runtime stack:
-runtime.throw(0x20594e0, 0x21)
-	/usr/local/go/src/runtime/panic.go:619 +0x81 fp=0x7ff7bfeff188 sp=0x7ff7bfeff168 pc=0x1029751
-runtime.goenvs()
-	/usr/local/go/src/runtime/os_darwin.go:129 +0x83 fp=0x7ff7bfeff1b8 sp=0x7ff7bfeff188 pc=0x10272d3
-runtime.schedinit()
-	/usr/local/go/src/runtime/proc.go:496 +0xa4 fp=0x7ff7bfeff210 sp=0x7ff7bfeff1b8 pc=0x102c014
-runtime.rt0_go(0x7ff7bfeff240, 0x3, 0x7ff7bfeff240, 0x1000000, 0x3, 0x7ff7bfeff3f8, 0x7ff7bfeff407, 0x7ff7bfeff40b, 0x0, 0x7ff7bfeff40e, ...)
-	/usr/local/go/src/runtime/asm_amd64.s:252 +0x1f4 fp=0x7ff7bfeff218 sp=0x7ff7bfeff210 pc=0x1052c64
+# The Docker platform
+Docker provides the ability to package and run an application in a loosely isolated environment called a container. The isolation and security allows you to run many containers simultaneously on a given host. Containers are lightweight and contain everything needed to run the application, so you do not need to rely on what is currently installed on the host. You can easily share containers while you work, and be sure that everyone you share with gets the same container that works in the same way.
+
+Docker provides tooling and a platform to manage the lifecycle of your containers:
+
+* Develop your application and its supporting components using containers.
+* The container becomes the unit for distributing and testing your application.
+* When you’re ready, deploy your application into your production environment, as a container or an orchestrated service. This works the same whether your production environment is a local data center, a cloud provider, or a hybrid of the two.
+
+
+Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly. With Docker, you can manage your infrastructure in the same ways you manage your applications. By taking advantage of Docker’s methodologies for shipping, testing, and deploying code quickly, you can significantly reduce the delay between writing code and running it in production.
