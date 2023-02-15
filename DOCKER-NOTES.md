@@ -1,11 +1,35 @@
-# Docker overview
+# Topics
+
+* Intro and Course Overview
+* What is Docker?
+* What is a Container?
+* Docker vs Virtual Machine
+* Docker Installation
+* Main Docker Commands
+* Debugging a Container
+* Demo Project OverviewDocker in Practice
+* Developing with Containers
+* Docker ComposeRunning multiple services
+* DockerfileBuilding our own Docker Image
+* Private Docker RepositoryPushing our built Docker Image into a private Registry on AWS
+* Deploy our containerized app
+* Docker VolumesPersist data in Docker
+* Volumes DemoConfigure persistence for our demo project
+* Wrap Up
+
+
+
+
+
+## Docker overview
+
 
 
 ![](assets/docker-logo.png)
 
 The concept of containerization itself is pretty old. But the emergence of the Docker Engine in 2013 has made it much easier to containerize your applications.
 
-According to the Stack Overflow Developer Survey - 2020, Docker is the #1 most wanted platform, #2 most loved platform, and also the #3 most popular platform.
+According to the Stack Overflow Developer Survey2020, Docker is the #1 most wanted platform, #2 most loved platform, and also the #3 most popular platform.
 
 As in-demand as it may be, getting started can seem a bit intimidating at first. So in this book, we'll be learning everything from the basics to a more intermediate level of containerization. After going through the entire book, you should be able to:
 
@@ -32,3 +56,14 @@ Docker provides tooling and a platform to manage the lifecycle of your container
 
 
 Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly. With Docker, you can manage your infrastructure in the same ways you manage your applications. By taking advantage of Docker’s methodologies for shipping, testing, and deploying code quickly, you can significantly reduce the delay between writing code and running it in production.
+
+
+mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+
+kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+
+docker swarm join --token SWMTKN-1-5ti5qyridwoubt4vyyqzxqqmf392khzgikwwblt5olef5kw0c1-4nk2ekpeyyie5m manager
+8df88r00qz6
