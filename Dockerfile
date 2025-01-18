@@ -1,7 +1,31 @@
-FROM node
-MAINTAINER ian.miell@gmail.com
-RUN git clone -q https://github.com/docker-in-practice/todo.git
-WORKDIR todo
-RUN npm install > /dev/null
-EXPOSE 8000
-CMD ["npm","start"]
+FROM ubuntu:latest
+
+RUN apt-get update && \
+    apt-get install build-essential\ 
+                    libpcre3 \
+                    libpcre3-dev \
+                    zlib1g \
+                    zlib1g-dev \
+                    libssl3 \
+                    libssl-dev \
+                    -y && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+COPY nginx-1.20.2.tar.gz .
+
+RUN tar -xvf nginx-1.20.2.tar.gz && rm nginx-1.20.2.tar.gz
+
+RUN cd nginx-1.20.2 && \
+    ./configure \
+        --sbin-path=/usr/bin/nginx \
+        --conf-path=/etc/nginx/nginx.conf \
+        --error-log-path=/var/log/nginx/error.log \
+        --http-log-path=/var/log/nginx/access.log \
+        --with-pcre \
+        --pid-path=/var/run/nginx.pid \
+        --with-http_ssl_module && \
+    make && make install
+
+RUN rm -rf /nginx-1.20.2
+
+CMD ["nginx", "-g", "daemon off;"]
